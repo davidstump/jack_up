@@ -51,11 +51,11 @@ class @JackUp.FileUploader
     xhr.open 'POST', @path, true
 
     formData = railsFormData()
-    console.log JSON.stringify(formData)
+    debugger
     formData.append(@fileParam, file)
 
     @trigger 'upload:start', file: file
-    console.log JSON.stringify(formData)
+    debugger 
     xhr.send formData
 
 _.extend JackUp.FileUploader.prototype, JackUp.Events
