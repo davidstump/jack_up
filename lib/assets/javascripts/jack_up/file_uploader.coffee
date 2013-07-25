@@ -51,11 +51,11 @@ class @JackUp.FileUploader
     xhr.open 'POST', @path, true
 
     formData = railsFormData()
-    console.log "with csrf: " + formData
+    console.log formData
     formData.append(@fileParam, file)
 
     @trigger 'upload:start', file: file
-    console.log "sending: " + formData
+    console.log formData
     xhr.send formData
 
 _.extend JackUp.FileUploader.prototype, JackUp.Events
