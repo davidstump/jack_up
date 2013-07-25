@@ -43,6 +43,7 @@ class @JackUp.FileUploader
         @trigger 'upload:success', responseText: event.target.responseText, event: event, file: file
 
   upload: (file) ->
+    console.log "uploading"
     xhr = new XMLHttpRequest()
     xhr.upload.addEventListener 'progress', @_onProgressHandler(file), false
     xhr.addEventListener 'readystatechange', @_onReadyStateChangeHandler(file), false
@@ -50,9 +51,11 @@ class @JackUp.FileUploader
     xhr.open 'POST', @path, true
 
     formData = railsFormData()
+    console.log "with csrf: " + formData
     formData.append(@fileParam, file)
 
     @trigger 'upload:start', file: file
+    console.log "sending: " + formData
     xhr.send formData
 
 _.extend JackUp.FileUploader.prototype, JackUp.Events
